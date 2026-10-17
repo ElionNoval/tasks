@@ -78,7 +78,26 @@
         <section class="card settings-card" id="settingsCard"><div class="card-head"><div><h2 class="card-title">Settings</h2><p class="card-sub">Theme and sound.</p></div></div>
           <div class="settings-grid">
             <div class="setting"><label for="themeSelect">Theme</label><select id="themeSelect"><option value="light">Light</option><option value="dark">Dark</option><option value="pastel">Pastel</option></select></div>
-            <script>
+            <div class="toggle-row"><label for="soundToggle">Timer sound</label><input class="switch" id="soundToggle" type="checkbox" checked></div>
+            <p style="grid-column:1/-1;color:var(--muted);font-size:11px;line-height:1.55;margin:0">Your tasks and history stay on this device. Nothing is sent to a server.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer class="foot"><span>FocusDay · free, no account needed</span><span>Tasks stay on this device · <button id="clearData" style="border:0;background:none;color:var(--muted);text-decoration:underline;padding:0">Clear today's tasks</button></span></footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="tour-backdrop" id="tourBackdrop" aria-hidden="true"></div>
+<section class="tour-card" id="tourCard" role="dialog" aria-modal="true" aria-labelledby="tourTitle" aria-describedby="tourText">
+  <div class="tour-progress" id="tourProgress" aria-hidden="true"></div>
+  <p class="tour-kicker" id="tourKicker">Quick tour</p>
+  <h2 id="tourTitle">Welcome to FocusDay</h2>
+  <p id="tourText">Plan your day and focus on one task at a time.</p>
+  <div class="tour-actions"><button type="button" class="secondary" id="tourSkip">Skip tour</button><button type="button" class="secondary" id="tourBack" hidden>Back</button><span class="spacer"></span><span class="tour-count" id="tourCount">1 of 7</span><button type="button" class="primary" id="tourNext">Next</button></div>
+</section>
+<div class="modal-backdrop" id="taskModal"><div class="modal"><h2 id="modalTitle">Task</h2><p>Edit the title or note.</p><form id="taskForm"><input class="field" id="modalTaskTitle" maxlength="100" placeholder="Task title" required><textarea class="field" id="modalTaskNote" maxlength="180" placeholder="Note (optional)"></textarea><div class="modal-actions"><button type="button" class="secondary" id="cancelModal">Cancel</button><button type="submit" class="primary">Save task</button></div></form></div></div>
+<script>
 (async()=>{
 const $=s=>document.querySelector(s);
 const STORE='focusday.v2';
